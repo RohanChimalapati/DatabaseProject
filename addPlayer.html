@@ -90,32 +90,12 @@
         </tr>
         </form>
     </table>
-    <form action = "getMLSdata.php" method = "get">
-        Player Name: <input type = "text" name = "PlayerName"><br>
-        <input type="submit" value="Submit">
-    </form>
-    <button id="flip">Change Column</button>
 
-    <script>
-        let state = false;
-
-        document.getElementById("flip").addEventListener("click", function() {
-            state = !state;
-            const newArray = ["New Text 1", "New Text 2", "New Text 3", "New Text 4", "New Text 5", "New Text 6", "New Text 7", "New Text 8", "New Text 9", "New Text 10"];
-            const column1Cells = document.querySelectorAll('td[id="column1"]');
-            
-            if (state) {
-                column1Cells.forEach((cell, index) => {
-                    cell.textContent = newArray[index];
-                });
-            } else {
-                column1Cells.forEach((cell, index) => {
-                    cell.textContent = '';
-                });
-            }
-        });
-
-        
-    </script>
+</body>
+<body>
+    <a href="./dbProjSite.html">Main Menu</a><br>
+    <a href="./addPlayer.html">Add Player</a><br>
+    <a href="./updatePlayer.html">Update Player</a><br>
+    <a href="./deletePlayer.html">Delete Player</a><br>
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+<html>
 <?php
     $pName = $_GET['PlayerName'];
     $pID = $_GET['ID'];
@@ -22,3 +22,6 @@
 
     $conn->close();
 ?>
+<a href="dbProjSite.html">Return to Main Menu</a><br>
+<a href="AddPlayer.html">Return to Delete Player</a><br>
+</html>

@@ -1,3 +1,4 @@
+<html>
 <?php
     $playerName = $_GET['PlayerName'] ?? null;
     $ID = $_GET['PlayerID'] ?? null;
@@ -25,3 +26,6 @@
 
     $conn->close();
 ?>
+<a href="dbProjSite.html">Return to Main Menu</a><br>
+<a href="AddPlayer.html">Return to Add Player</a><br>
+</html>
