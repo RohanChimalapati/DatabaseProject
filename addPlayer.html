@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <style>
+        table{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .teamName {
+            border: 2px solid black;
+            color: gray;
+        }
+
+        #header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+        }
+
+        #empty {
+            border: none;
+        }
+    </style>
+    <title>MLS Western Conference Comparisons</title>
+</head>
+<body>
+    <h3 id = header>MLS Western Conference Comparisons</h3>
+    <table>
+        <form action="addMLSdata.php" method="get">
+        <tr>
+            <td><input type = "text" name = "PlayerName" placeholder="Add Player..."></td>
+        </tr>
+        <tr>    
+                <td> <input type="submit" value="Add" ></td>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td id="12"><input type = "text" name = "PlayerID"></td>
+        </tr>
+        <tr>
+            <td>Team</td>
+            <td id="12"><input type = "text" name = "Team"></td>
+        </tr>
+        <tr>
+            <td>Position</td>
+            <td id="12"><input type = "text" name = "Position"></td>
+        </tr>
+        <tr>
+            <td>Matches</td>
+            <td id="13"><input type = "text" name = "Matches"></td>
+        </tr>
+        <tr>
+            <td>Minutes</td>
+            <td id="14"><input type = "text" name = "Game_Time"></td>
+        </tr>
+        <tr>
+            <td>Goals</td>
+            <td id="15"><input type = "text" name = "Goals"></td>
+        </tr>
+        <tr>
+            <td>Assists</td>
+            <td id="16"><input type = "text" name = "Assists"></td>
+        </tr>
+        <tr>
+            <td>PK Made</td>
+            <td id="17"><input type = "text" name = "PK_Made"></td>
+        </tr>
+        <tr>
+            <td>PK Attempted</td>
+            <td id="18"><input type = "text" name = "PK_taken"></td>
+        </tr>
+        <tr>
+            <td>Yellow Cards</td>
+            <td id="19"><input type = "text" name = "Yellow_Cards"></td>
+        </tr>
+        <tr>
+            <td>Red Cards</td>
+            <td id="19"><input type = "text" name = "Red_Cards"></td>
+        </tr>
+        </form>
+    </table>
+    <form action = "getMLSdata.php" method = "get">
+        Player Name: <input type = "text" name = "PlayerName"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <button id="flip">Change Column</button>
+
+    <script>
+        let state = false;
+
+        document.getElementById("flip").addEventListener("click", function() {
+            state = !state;
+            const newArray = ["New Text 1", "New Text 2", "New Text 3", "New Text 4", "New Text 5", "New Text 6", "New Text 7", "New Text 8", "New Text 9", "New Text 10"];
+            const column1Cells = document.querySelectorAll('td[id="column1"]');
+            
+            if (state) {
+                column1Cells.forEach((cell, index) => {
+                    cell.textContent = newArray[index];
+                });
+            } else {
+                column1Cells.forEach((cell, index) => {
+                    cell.textContent = '';
+                });
+            }
+        });
+
+        
+    </script>
+</body>
+</html>
