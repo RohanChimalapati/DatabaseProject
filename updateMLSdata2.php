@@ -13,7 +13,7 @@
     $yellowCards = $_GET['Yellow_Cards'] ?? null;
     $redCards = $_GET['Red_Cards'] ?? null;
 
-    $conn = new mysqli ("localhost", "root", "anmyancn1", "classproj1");
+    $conn = new mysqli ("localhost", "root", "", "MLS");
     $sql = "UPDATE PLAYER
             SET Position = '$position',
                 Team = '$teamName',

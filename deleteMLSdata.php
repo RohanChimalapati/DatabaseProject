@@ -4,7 +4,7 @@
     $pID = $_GET['ID'];
     
 
-    $conn = new mysqli ("localhost", "root", "anmyancn1", "classproj1");
+    $conn = new mysqli ("localhost", "root", "", "MLS");
     $sql = "DELETE FROM Player
             WHERE PlayerName = '$pName' OR PlayerID = '$pID';";
 

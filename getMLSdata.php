@@ -3,7 +3,7 @@
     $pName = $_GET['PlayerName'];
     
 
-    $conn = new mysqli ("localhost", "root", "anmyancn1", "classproj1");
+    $conn = new mysqli ("localhost", "root", "", "MLS");
     $sql = "SELECT PlayerID, Team, Position, Matches, Game_Time, Goals, Assists, PK_Made, PK_taken, Yellow_Cards, Red_Cards
             FROM Player as P, Team as T
             WHERE PlayerName = ? AND P.Team = T.Name";
