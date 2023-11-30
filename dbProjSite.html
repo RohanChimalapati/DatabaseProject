@@ -1,111 +1,189 @@
 <!DOCTYPE html>
 <html>
-    
-<head>
-    <style>
-        table{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-collapse: collapse;
-        }
+        
+    <head>
+        <style>
+            table{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-collapse: collapse;
+            }
 
-        th, td {
-            border: 1px solid black;
-            padding: 5px;
-            text-align: center;
-        }
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
 
-        .teamName {
-            border: 2px solid black;
-            color: gray;
-        }
+            .teamName {
+                border: 2px solid black;
+                color: gray;
+            }
 
-        #header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 10vh;
-        }
+            #header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 10vh;
+            }
 
-        #empty {
-            border: none;
-        }
-    </style>
-    <title>MLS Western Conference Comparisons</title>
-</head>
-<body>
-    <h3 id = header>MLS Western Conference Comparisons</h3>
-    <table>
-        <form action = "getMLSdata.php" method = "get">
-        <tr>
-            <td class = 'teamName'><input type = "text" name = "PlayerName"></td>
-            <td id = "empty"></td>
-            <td class = 'teamName'><input type = "text" name = "PlayerName2"></td>
-        </tr>
-        <tr>    
-            <td> <input type="submit" value="Search" ></td>
-            <td id = "empty"></td>
-            <td> <input type="submit" value="Search" ></td>
-        </tr>
-        </form>
-        <tr>
-            <td id="column1"></td>
-            <td>Team</td>
-            <td id="10"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Team Record</td>
-            <td id="11"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Position</td>
-            <td id="12"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Matches</td>
-            <td id="13"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Minutes</td>
-            <td id="14"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Goals</td>
-            <td id="15"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Assists</td>
-            <td id="16"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>PK Made</td>
-            <td id="17"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>PK Attempted</td>
-            <td id="18"></td>
-        </tr>
-        <tr>
-            <td id="column1"></td>
-            <td>Yellow Cards</td>
-            <td id="19"></td>
-        </tr>
-    </table>
-</body>
+            #empty {
+                border: none;
+            }
+        </style>
+        <title>MLS Western Conference Comparisons</title>
+    </head>
+    <body>
+        <h3 id = header>MLS Western Conference Comparisons</h3>
+        <table>
+            <form>
+            <tr>
+                <td class = 'teamName'><input type = "text" name = "Player Name"  id = "PlayerName"></td>
+                <td id = "empty"></td>
+                <td class = 'teamName'><input type = "text" name = "Player Name" id = "PlayerName2"></td>
+            </tr>
+            <tr>    
+                <td> <input type="button" value="Search"  onClick="getData()"></td>
+                <td id = "empty"></td>
+                <td> <input type="button" value="Search" onClick="getData2()"></td>
+            </tr>
+            </form>
+            <tr>
+                <td id = "PID1" className="column1"></td>
+                <td>ID</td>
+                <td id = "PID2" className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Team</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Position</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Matches</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Minutes</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Goals</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Assists</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>PK Made</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>PK Attempted</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Yellow Cards</td>
+                <td className="column2"></td>
+            </tr>
+            <tr>
+                <td className="column1"></td>
+                <td>Red Cards</td>
+                <td className="column2"></td>
+            </tr>
+        </table>
+
+        <script>
+            function getData() {
+                var pName = document.getElementById("PlayerName").value;
+
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        const column1Cells = document.querySelectorAll('td[className="column1"]');
+                        ans = JSON.parse(xhr.responseText);
+
+                        if (Array.isArray(ans))
+                        {
+                            column1Cells.forEach((cell, index) => {
+                            cell.textContent = ans[index];
+                            });
+
+                            var PID = document.getElementById("PID1").textContent;
+
+                            var startInd = PID.indexOf('players/') + 'players/'.length;
+                            var endInd = PID.indexOf('/', startInd);
+
+                            var nPID = PID.substring(startInd, endInd);
+                            document.getElementById("PID1").textContent = nPID;
+                        }
+                        else
+                        {
+                            document.getElementById("PlayerName").value = "ERROR: NOT FOUND";
+                        }
+                        
+                    }
+                };
+
+                xhr.open("GET", "getMLSdata.php?PlayerName=" + pName, true);
+                xhr.send();
+            }
+
+            function getData2() {
+                var pName2 = document.getElementById("PlayerName2").value;
+
+                var xhr2 = new XMLHttpRequest();
+                xhr2.onreadystatechange = function() {
+                    if (xhr2.readyState == 4 && xhr2.status == 200) {
+
+                        const column2Cells = document.querySelectorAll('td[className="column2"]');
+                        ans2 = JSON.parse(xhr2.responseText);
+                        
+                        if (Array.isArray(ans2))
+                        {
+                            column2Cells.forEach((cell, index) => {
+                            cell.textContent = ans2[index];
+                            });
+
+                            var PID2 = document.getElementById("PID2").textContent;
+
+                            var startInd2 = PID2.indexOf('players/') + 'players/'.length;
+                            var endInd2 = PID2.indexOf('/', startInd2);
+
+                            var nPID2 = PID2.substring(startInd2, endInd2);
+                            document.getElementById("PID2").textContent = nPID2;
+                        }
+                        else{
+                            document.getElementById("PlayerName2").value = "ERROR: NOT FOUND";
+                        }
+                        
+                    }
+                };
+
+                xhr2.open("GET", "getMLSdata.php?PlayerName=" + pName2, true);
+                xhr2.send();
+            }
+
+            
+        </script>
+    </body>
+    <body>
+        <a href="./dbProjSite.html">Main Menu</a><br>
+        <a href="./addPlayer.html">Add Player</a><br>
+        <a href="./updatePlayer.html">Update Player</a><br>
+        <a href="./deletePlayer.html">Delete Player</a><br>
+    </body>
 </html>
-
-<body>
-    <a href="./dbProjSite.html">Main Menu</a><br>
-    <a href="./addPlayer.html">Add Player</a><br>
-    <a href="./updatePlayer.html">Update Player</a><br>
-    <a href="./deletePlayer.html">Delete Player</a><br>
-</body>
