@@ -13,7 +13,7 @@
     $yellowCards = $_GET['Yellow_Cards'] ?? null;
     $RedCards = $_GET['Red_Cards'] ?? null;
 
-    $conn = new mysqli ("localhost", "root", "anmyancn1", "classproj1");
+    $conn = new mysqli ("localhost", "root", "", "MLS");
     $sql = "INSERT INTO Player(PlayerName, PlayerID, Team, Position, Matches, Game_Time, Goals, Assists, PK_Made, PK_taken, Yellow_Cards, Red_Cards)
             VALUES('$playerName', '$ID', '$teamName', '$position', $matches, $minutes, $goals, $assists, $pkMade, $pkAtt, $yellowCards, $RedCards);";
     
